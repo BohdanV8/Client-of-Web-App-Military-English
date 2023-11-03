@@ -1,9 +1,13 @@
 import React from "react";
+import Header from "./components/Header/Header";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
+import "./styles/main.css";
 function App() {
   return (
-    <div className="text-center mt-5"><h1>Web App</h1></div>
+    <div>
+      <Header />
+    </div>
   );
 }
 

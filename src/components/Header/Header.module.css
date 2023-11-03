@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Alegreya', serif;
+}
+
+.hero{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(../../images/header.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.logo{
+  color: azure;
+  font-size: 35px;
+}
+
+span{
+  color: red;
+}
+
+nav ul li{
+  list-style-type: none;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+nav ul li a{
+  color: azure;
+  text-decoration: none;
+  font-weight: bold;
+  font-size:x-large;
+}
+
+nav ul li a:hover{
+  color: red;
+  transition: .3s;
+}
+
+.my_button{
+  border: none;
+  background: red;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: .4s;
+}
+
+.my_button:hover{
+  cursor: pointer;
+  transform: scale(1.3);
+}
