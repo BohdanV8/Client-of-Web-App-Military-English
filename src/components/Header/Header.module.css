@@ -21,6 +21,11 @@ nav{
   padding-top: 40px;
   padding-left: 10%;
   padding-right: 10%;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
 }
 
 .logo{
@@ -31,6 +36,7 @@ nav{
 span{
   color: red;
 }
+
 
 nav ul li{
   list-style-type: none;
@@ -52,13 +58,15 @@ nav ul li a:hover{
 
 .my_button{
   border: none;
-  background: red;
-  padding: 12px 30px;
+  background: var(--gradient-purple-gradient-12, linear-gradient(90deg, #ff2222 0%, #ff5c10 100%));
+  padding: 12px 60px;
   border-radius: 30px;
   color: white;
   font-weight: bold;
   font-size: 20px;
   transition: .4s;
+  position: relative;
+  right: 0%;
 }
 
 .my_button:hover{

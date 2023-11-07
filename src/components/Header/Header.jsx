@@ -3,29 +3,29 @@ import styles from "./Header.module.css";
 
 const Header = () => {
   return (
-    <div className={styles.hero}>
+    <div>
       <nav>
         <h2 className={styles.logo}>
           Military <span>English</span>
         </h2>
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="#about">About</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="#courses">Courses</a>
           </li>
           <li>
-            <a href="#">Login</a>
-          </li>
-          <li>
-            <a href="#">Contact Us</a>
+            <a href="#contact">Contact Us</a>
           </li>
         </ul>
         <button className={styles.my_button} type="button">
-          Subscribe
+          Sign in
         </button>
       </nav>
+      <section id="#top">
+        <div className={styles.hero}></div>
+      </section>
     </div>
   );
 };
