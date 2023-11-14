@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./SignInForm.module.css";
+import styles from "./SignUpForm.module.css";
 import { useState } from "react";
 import axios from "axios";
-const SignInForm = ({ setIsAccountExist }) => {
+const SignUpForm = ({ setIsAccountExist }) => {
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -11,7 +11,7 @@ const SignInForm = ({ setIsAccountExist }) => {
     try {
       // Відправка POST-запиту на сервер
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "http://localhost:5000/api/auth/register",
         formData
       );
 
@@ -29,6 +29,9 @@ const SignInForm = ({ setIsAccountExist }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    name: "",
+    surname: "",
+    middlename: "",
   });
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
@@ -50,22 +53,46 @@ const SignInForm = ({ setIsAccountExist }) => {
         onChange={handleInputChange}
         required
       />
+      <input
+        className={styles.myInput}
+        type="text"
+        placeholder="Name"
+        name="name"
+        value={formData.name}
+        onChange={handleInputChange}
+      />
+      <input
+        className={styles.myInput}
+        type="text"
+        placeholder="Surname"
+        name="surname"
+        value={formData.surname}
+        onChange={handleInputChange}
+      />
+      <input
+        className={styles.myInput}
+        type="text"
+        placeholder="Middlename"
+        name="middlename"
+        value={formData.middlename}
+        onChange={handleInputChange}
+      />
       <div className="text-center">
-        <button className={styles.myButton}>Sign in</button>
+        <button className={styles.myButton}>Sign up</button>
       </div>
       <div className="text-center">
         <button
           type="button"
           className="btn btn-link"
           onClick={() => {
-            setIsAccountExist(false);
+            setIsAccountExist(true);
           }}
         >
-          Don't have an account? Create it!
+          Have an account? Sign in!
         </button>
       </div>
     </form>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

@@ -99,7 +99,30 @@ span{
   color: rgb(255, 255, 255);
 }
 
+.contactContent{
+  position: relative;
+  top: 20%;
+  left: 15%;
+  font-family: 'Montserrat', sans-serif;
+  font-size:x-large;
+  color: rgb(255, 255, 255);
+}
+
 .myImg{
   position: relative;
   bottom: 10%;
+  border-radius: 10px;
+}
+
+.contactContent{
+  position: relative;
+  top: 20%;
+}
+
+.myInputAndTextArea{
+  display: block;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  width: 500px;
+  text-align: center;
 }
