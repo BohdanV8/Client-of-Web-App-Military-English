@@ -1,0 +1,10 @@
+.MyFooter {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto; /* або використовуйте align-self: flex-end; */
+  width: 100%;
+  background-color: #f8f9fa; /* Змініть колір фону за потребою */
+  padding: 20px; /* Додайте відступи за потребою */
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Додайте тінь за потребою */
+  z-index: 9999;
+  }

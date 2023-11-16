@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./Header.module.css";
-import MyModal from "../MyModal/MyModal";
-import SignInForm from "../SignInForm/SignInForm";
-import SignUpForm from "../SignUpForm/SignUpForm";
+import MyModal from "../../UI/MyModal/MyModal";
+import SignInForm from "../../SignInForm/SignInForm";
+import SignUpForm from "../../SignUpForm/SignUpForm";
 import { useState } from "react";
-import someBook from "../../images/SomeBook.png";
+import MyFooter from "../../UI/MyFooter/MyFooter";
+import someBook from "../../../images/SomeBook.png";
 const Header = () => {
   const [visible, setVisible] = useState(false);
   const [isAccountExist, setIsAccountExist] = useState(true);
   return (
-    <div>
+    <div className={styles.header}>
       <MyModal visible={visible} setVisible={setVisible}>
         {isAccountExist ? (
           <SignInForm setIsAccountExist={setIsAccountExist} />
@@ -76,17 +77,17 @@ const Header = () => {
       </section>
       <section id="courses" className={styles.contentBoxToTop}></section>
       <section id="contacts" className={styles.contentBoxToBottom}>
-        <div className="row mt-5">
-          <div className="col-md-5"></div>
-          <div className="col-md-7">
+        <div className="row mt-5 container-fluid">
+          <div className="col-md-6"></div>
+          <div className="col-md-6">
             <div className={styles.contactContent}>
               <h2>Контакти</h2>
               <p>
                 Ми завжди готові відповісти на ваші запитання та надати
-                додаткову інформацію.
+                додаткову інформацію
               </p>
 
-              <div className={styles.contactInfo}>
+              <div>
                 <h3>Зв'яжіться з нами:</h3>
                 <p>Email: thorykbv@gmail.com</p>
                 <p>Телефон: 0689416887</p>
@@ -136,6 +137,7 @@ const Header = () => {
           </div>
         </div>
       </section>
+      <MyFooter />
     </div>
   );
 };

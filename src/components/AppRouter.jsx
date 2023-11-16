@@ -1,18 +1,40 @@
 import React from "react";
-import { privateRoutes } from "../router/routes";
 import { publicRoutes } from "../router/routes";
+import { userRoutes } from "../router/routes";
+import { courseModeratorRoutes } from "../router/routes";
 import { Route, Routes } from "react-router-dom";
+import { UserRoleContext } from "../context/myContext";
+import { useContext } from "react";
+
 const AppRouter = () => {
-  const isAuth = localStorage.getItem("userId");
-  return isAuth ? (
+  const { userRole } = useContext(UserRoleContext);
+
+  let routesToRender;
+
+  switch (userRole) {
+    case "user":
+      routesToRender = [...userRoutes, ...publicRoutes];
+      break;
+    case "courseModerator":
+      routesToRender = [...courseModeratorRoutes, ...publicRoutes];
+      break;
+    case "siteManager":
+      return (
+        <h1>
+          siteManager Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Nesciunt sapiente iusto, quis necessitatibus delectus, aspernatur quasi
+          eveniet voluptatem tempore nihil autem velit esse! Accusamus aliquid
+          ratione voluptate voluptatibus odio velit.
+        </h1>
+      );
+    default:
+      // Якщо роль не визначена, ви можете задати за замовчуванням
+      routesToRender = publicRoutes;
+  }
+
+  return (
     <Routes>
-      {privateRoutes.map((el) => (
-        <Route path={el.path} element={<el.element />} key={el.path} />
-      ))}
-    </Routes>
-  ) : (
-    <Routes>
-      {publicRoutes.map((el) => (
+      {routesToRender.map((el) => (
         <Route path={el.path} element={<el.element />} key={el.path} />
       ))}
     </Routes>

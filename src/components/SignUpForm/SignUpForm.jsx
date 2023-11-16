@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "./SignUpForm.module.css";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { UserRoleContext } from "../../context/myContext";
 const SignUpForm = ({ setIsAccountExist }) => {
+  const {setUserRole} = useContext(UserRoleContext)
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,9 +21,18 @@ const SignUpForm = ({ setIsAccountExist }) => {
       // Обробка успішної відповіді від сервера, наприклад, перехід на іншу сторінку або встановлення додаткових флагів
       console.log(response.data); // Виводимо дані з відповіді у консоль (це може бути зайвим на продакшені)
       localStorage.setItem("userId", response.data.userId);
+      localStorage.setItem("userName", formData.name);
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${response.data.token}`;
+      localStorage.setItem("userRole", response.data.userRole);
+      setUserRole(response.data.userRole)
+      if (response.data.userRole === "user") {
+        navigate("/userPage");
+      } else if (response.data.userRole === "courseModerator") {
+        navigate("/courseModeratorPage");
+      } else if (response.data.userRole === "siteManager") {
+      }
     } catch (error) {
       // Обробка помилок, наприклад, виведення повідомлення про помилку користувачеві
       console.error("Error during signup:", error.message);
@@ -33,12 +45,13 @@ const SignUpForm = ({ setIsAccountExist }) => {
     surname: "",
     middlename: "",
   });
+  const navigate = useNavigate();
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
       <input
         className={styles.myInput}
         type="text"
-        placeholder="Username"
+        placeholder="Nickname"
         name="username"
         value={formData.username}
         onChange={handleInputChange}
