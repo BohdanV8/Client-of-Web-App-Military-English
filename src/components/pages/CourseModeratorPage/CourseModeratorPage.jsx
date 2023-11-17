@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styles from "./CourseModeratorPage.module.css";
 import Logo from "../../../images/icons8-english-50.png";
-import { Link } from "react-router-dom";
 import MyModal from "../../UI/MyModal/MyModal";
 import CourseForm from "../../CourseForm/CourseForm";
+import useCategories from "../../../hooks/useCategories";
 const CourseModeratorPage = () => {
+  const categories = useCategories();
   const [visible, setVisible] = useState(false);
   return (
     <div>
@@ -22,23 +23,31 @@ const CourseModeratorPage = () => {
             </div>
           </div>
 
-          <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li>
-              <Link className="nav-link px-2 link-dark" to="/">
-                <h3>Main page</h3>
-              </Link>
-            </li>
-            <li>
-              <Link className="nav-link px-2 link-dark">
-                <h3>Home</h3>
-              </Link>
-            </li>
-            <li>
-              <Link className="nav-link px-2 link-dark" to="/courses">
-                <h3>Courses</h3>
-              </Link>
-            </li>
-          </ul>
+          <div className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <div className="input-group">
+              <input
+                type="search"
+                className="form-control rounded"
+                placeholder="Search courses"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+              <select
+                className="form-select"
+                // onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="">All Categories</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.title}
+                  </option>
+                ))}
+              </select>
+              <button type="button" className="btn btn-outline-primary">
+                search
+              </button>
+            </div>
+          </div>
 
           <div className="col-md-3 text-end">
             <button
