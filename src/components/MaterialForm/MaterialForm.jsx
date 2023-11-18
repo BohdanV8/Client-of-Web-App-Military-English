@@ -1,12 +1,10 @@
 import React from "react";
-import styles from "./CourseForm.module.css";
+import styles from "./MaterialForm.module.css";
 import { useState } from "react";
-import useCategories from "../../hooks/useCategories";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const CourseForm = () => {
-  const navigate = useNavigate();
-  const categories = useCategories();
+const MaterialForm = () => {
+  const topicString = localStorage.getItem("selectedTopic");
+  const topicObject = JSON.parse(topicString);
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -20,7 +18,7 @@ const CourseForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:5000/api/courses/create",
+      "http://localhost:5000/api/materials/create",
       formData,
       {
         headers: {
@@ -28,19 +26,13 @@ const CourseForm = () => {
         },
       }
     );
-    console.log(response.data.course);
-
-    const someCourse = response.data.course;
-    const jsonString = JSON.stringify(someCourse);
-    localStorage.setItem("selectedCourse", jsonString);
-
-    navigate("/selectedCourseOfModerator");
+    console.log(response.data.material);
   };
   const [formData, setFormData] = useState({
+    id_of_topic: topicObject._id,
     title: "",
     description: "",
     file: null,
-    category: "",
   });
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
@@ -63,33 +55,14 @@ const CourseForm = () => {
       />
       <div className="mb-3 mt-2">
         <label htmlFor="formFile" className="form-label">
-          Choose image for this course
+          Choose material
         </label>
         <input
           className="form-control"
           type="file"
           id="formFile"
-          accept="image/*"
           onChange={handleImageChange}
         />
-      </div>
-      <div>
-        <label htmlFor="category">Select a category:</label>
-        <select
-          id="category"
-          name="category"
-          className="form-select"
-          onChange={handleInputChange}
-          value={formData.category}
-          required
-        >
-          <option value="">Виберіть категорію</option>
-          {categories.map((category) => (
-            <option key={category._id} value={category._id}>
-              {category.title}
-            </option>
-          ))}
-        </select>
       </div>
       <div className="text-center">
         <button className={styles.myButton}>Create</button>
@@ -98,4 +71,4 @@ const CourseForm = () => {
   );
 };
 
-export default CourseForm;
+export default MaterialForm;

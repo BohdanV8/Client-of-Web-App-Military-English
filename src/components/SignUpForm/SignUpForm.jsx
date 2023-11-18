@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./SignUpForm.module.css";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserRoleContext } from "../../context/myContext";
 const SignUpForm = ({ setIsAccountExist }) => {
-  const {setUserRole} = useContext(UserRoleContext)
+  const { setUserRole } = useContext(UserRoleContext);
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -26,7 +26,7 @@ const SignUpForm = ({ setIsAccountExist }) => {
         "Authorization"
       ] = `Bearer ${response.data.token}`;
       localStorage.setItem("userRole", response.data.userRole);
-      setUserRole(response.data.userRole)
+      setUserRole(response.data.userRole);
       if (response.data.userRole === "user") {
         navigate("/userPage");
       } else if (response.data.userRole === "courseModerator") {

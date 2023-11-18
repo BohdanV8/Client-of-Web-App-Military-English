@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./CourseForm.module.css";
+import styles from "./TopicForm.module.css";
 import { useState } from "react";
-import useCategories from "../../hooks/useCategories";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const CourseForm = () => {
+import { useNavigate } from "react-router-dom";
+const TopicForm = () => {
   const navigate = useNavigate();
-  const categories = useCategories();
+  const courseString = localStorage.getItem("selectedCourse");
+  const courseObject = JSON.parse(courseString);
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -17,10 +17,16 @@ const CourseForm = () => {
     const file = e.target.files[0];
     setFormData({ ...formData, file: file });
   };
+  const [formData, setFormData] = useState({
+    id_of_course: courseObject._id,
+    title: "",
+    description: "",
+    file: null,
+  });
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:5000/api/courses/create",
+      "http://localhost:5000/api/topics/create",
       formData,
       {
         headers: {
@@ -28,20 +34,11 @@ const CourseForm = () => {
         },
       }
     );
-    console.log(response.data.course);
-
-    const someCourse = response.data.course;
-    const jsonString = JSON.stringify(someCourse);
-    localStorage.setItem("selectedCourse", jsonString);
-
-    navigate("/selectedCourseOfModerator");
+    const someTopic = response.data.topic;
+    const jsonString = JSON.stringify(someTopic);
+    localStorage.setItem("selectedTopic", jsonString);
+    navigate("/selectedTopicOfModerator");
   };
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    file: null,
-    category: "",
-  });
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
       <input
@@ -63,7 +60,7 @@ const CourseForm = () => {
       />
       <div className="mb-3 mt-2">
         <label htmlFor="formFile" className="form-label">
-          Choose image for this course
+          Choose image for this topic
         </label>
         <input
           className="form-control"
@@ -73,24 +70,6 @@ const CourseForm = () => {
           onChange={handleImageChange}
         />
       </div>
-      <div>
-        <label htmlFor="category">Select a category:</label>
-        <select
-          id="category"
-          name="category"
-          className="form-select"
-          onChange={handleInputChange}
-          value={formData.category}
-          required
-        >
-          <option value="">Виберіть категорію</option>
-          {categories.map((category) => (
-            <option key={category._id} value={category._id}>
-              {category.title}
-            </option>
-          ))}
-        </select>
-      </div>
       <div className="text-center">
         <button className={styles.myButton}>Create</button>
       </div>
@@ -98,4 +77,4 @@ const CourseForm = () => {
   );
 };
 
-export default CourseForm;
+export default TopicForm;
