@@ -1,12 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CourseModeratorPage.module.css";
 import Logo from "../../../images/icons8-english-50.png";
 import MyModal from "../../UI/MyModal/MyModal";
 import CourseForm from "../../CourseForm/CourseForm";
 import useCategories from "../../../hooks/useCategories";
+import CoursesOfModeratorList from "../../CoursesOfModeratorList/CoursesOfModeratorList";
+import axios from "axios";
 const CourseModeratorPage = () => {
   const categories = useCategories();
   const [visible, setVisible] = useState(false);
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        const response = await axios.get(
+          "http://localhost:5000/api/courses/allCoursesOfModerator"
+        );
+
+        if (isMounted) {
+          setCourses(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <div>
       <MyModal visible={visible} setVisible={setVisible}>
@@ -57,7 +85,7 @@ const CourseModeratorPage = () => {
                 setVisible(true);
               }}
             >
-              <h4>Додати курс</h4>
+              <h5>Додати курс</h5>
             </button>
           </div>
         </header>
@@ -73,6 +101,9 @@ const CourseModeratorPage = () => {
             експерементувати та покращувати навчальний досвід для своїх учнів.
           </p>
         </div>
+      </div>
+      <div className="container mt-5">
+        <CoursesOfModeratorList courses={courses} />
       </div>
     </div>
   );

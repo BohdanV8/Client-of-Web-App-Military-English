@@ -21,6 +21,7 @@ const SignUpForm = ({ setIsAccountExist }) => {
       // Обробка успішної відповіді від сервера, наприклад, перехід на іншу сторінку або встановлення додаткових флагів
       console.log(response.data); // Виводимо дані з відповіді у консоль (це може бути зайвим на продакшені)
       localStorage.setItem("userId", response.data.userId);
+      localStorage.setItem("token", response.data.token);
       localStorage.setItem("userName", formData.name);
       axios.defaults.headers.common[
         "Authorization"

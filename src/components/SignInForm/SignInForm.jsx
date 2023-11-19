@@ -24,6 +24,7 @@ const SignInForm = ({ setIsAccountExist }) => {
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${response.data.token}`;
+      localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.userId);
       localStorage.setItem("userName", response.data.name);
       localStorage.setItem("userRole", response.data.userRole);

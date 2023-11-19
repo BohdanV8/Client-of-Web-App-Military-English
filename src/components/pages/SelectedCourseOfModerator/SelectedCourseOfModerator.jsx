@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../../images/icons8-english-50.png";
 import MyModal from "../../UI/MyModal/MyModal";
 import styles from "./SelectedCourseOfModerator.module.css";
 import TopicForm from "../../TopicForm/TopicForm";
+import TopicsOfModeratorList from "../../TopicsOfModeratorList/TopicsOfModeratorList";
+import axios from "axios";
 const SelectedCourseOfModerator = () => {
   const [visible, setVisible] = useState(false);
-  // const [selectedSort, setSelectedSort] = useState(-1);
+  const [topics, setTopics] = useState([]);
   const courseString = localStorage.getItem("selectedCourse");
   const courseObject = JSON.parse(courseString);
+  useEffect(() => {
+    let isMounted = true;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/topics/allTopicsOfCourse/${courseObject._id}`
+        );
+        if (isMounted) {
+          setTopics(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching topics:", error);
+      }
+    };
+    fetchData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  // const [selectedSort, setSelectedSort] = useState(-1);
   return (
     <div>
       <MyModal visible={visible} setVisible={setVisible}>
@@ -56,6 +78,9 @@ const SelectedCourseOfModerator = () => {
         <div className="text-center">
           <h1 className={styles.title}>{courseObject.title}</h1>
         </div>
+      </div>
+      <div className="container mt-5">
+        <TopicsOfModeratorList topics={topics} />
       </div>
     </div>
   );
