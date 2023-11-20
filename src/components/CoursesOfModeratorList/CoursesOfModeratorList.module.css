@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+
 .cardContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 60px;
+  }
+
+  .notFound{
+    font-family: 'Montserrat', sans-serif;
   }

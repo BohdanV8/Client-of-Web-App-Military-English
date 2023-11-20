@@ -4,6 +4,8 @@ import Logo from "../../../images/icons8-english-50.png";
 import styles from "./SelectedTopicOfModerator.module.css";
 import MaterialForm from "../../MaterialForm/MaterialForm";
 const SelectedTopicOfModerator = () => {
+  const topicString = localStorage.getItem("selectedTopic");
+  const topicObject = JSON.parse(topicString);
   const [visible, setVisible] = useState(false);
   return (
     <div>
@@ -21,20 +23,6 @@ const SelectedTopicOfModerator = () => {
             </div>
           </div>
 
-          {/* <div className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <div className="input-group">
-              <select
-                className="form-select"
-                onChange={(e) => setSelectedSort(e.target.value)}
-              >
-                <option value={-1}>від новіших до старіших</option>
-                <option value={1}>від старіших до новіших</option>
-              </select>
-              <button type="button" className="btn btn-outline-primary">
-                Sort
-              </button>
-            </div>
-          </div> */}
           <div className="col-md-3 text-end">
             <button
               type="button"
@@ -47,6 +35,12 @@ const SelectedTopicOfModerator = () => {
             </button>
           </div>
         </header>
+      </div>
+      <div className="container text-center">
+        <h1 className={styles.title}>{topicObject.title}</h1>
+      </div>
+      <div className="container text-center mt-4">
+        {topicObject.description && <h2>{topicObject.description}</h2>}
       </div>
     </div>
   );

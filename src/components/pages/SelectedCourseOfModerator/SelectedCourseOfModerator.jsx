@@ -29,7 +29,18 @@ const SelectedCourseOfModerator = () => {
       isMounted = false;
     };
   }, []);
-  // const [selectedSort, setSelectedSort] = useState(-1);
+  const [selectedSort, setSelectedSort] = useState(-1);
+  const sort = async () => {
+    const response = await axios.get(
+      `http://localhost:5000/api/topics/sortedTopicsOfCourse/${courseObject._id}`,
+      {
+        params: {
+          selectedSort,
+        },
+      }
+    );
+    setTopics(response.data);
+  };
   return (
     <div>
       <MyModal visible={visible} setVisible={setVisible}>
@@ -50,12 +61,18 @@ const SelectedCourseOfModerator = () => {
             <div className="input-group">
               <select
                 className="form-select"
-                // onChange={(e) => setSelectedSort(e.target.value)}
+                onChange={(e) => setSelectedSort(e.target.value)}
               >
                 <option value={-1}>від новіших до старіших</option>
                 <option value={1}>від старіших до новіших</option>
               </select>
-              <button type="button" className="btn btn-outline-primary">
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                onClick={() => {
+                  sort();
+                }}
+              >
                 Sort
               </button>
             </div>
@@ -78,6 +95,9 @@ const SelectedCourseOfModerator = () => {
         <div className="text-center">
           <h1 className={styles.title}>{courseObject.title}</h1>
         </div>
+        {courseObject.description && (
+          <h2 className={styles.description}>{courseObject.description}</h2>
+        )}
       </div>
       <div className="container mt-5">
         <TopicsOfModeratorList topics={topics} />
