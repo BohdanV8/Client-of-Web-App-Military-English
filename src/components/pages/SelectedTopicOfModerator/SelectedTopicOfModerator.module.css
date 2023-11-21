@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
 .logoText{
     font-size: xx-large;
     font-family: 'Raleway', sans-serif;
@@ -34,4 +35,10 @@
 .title{
     font-family: 'Lato', sans-serif;
     color:black;
+}
+
+.description{
+    font-family: 'Varela', sans-serif;
+    font-size:x-large;
+    text-align: justify;
 }

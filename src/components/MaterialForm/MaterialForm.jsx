@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./MaterialForm.module.css";
 import { useState } from "react";
 import axios from "axios";
-const MaterialForm = () => {
+const MaterialForm = ({setVisible , setUpdateList,updateList}) => {
   const topicString = localStorage.getItem("selectedTopic");
   const topicObject = JSON.parse(topicString);
   const handleInputChange = (e) => {
@@ -26,7 +26,9 @@ const MaterialForm = () => {
         },
       }
     );
-    console.log(response.data.material);
+    var newUpdate = updateList + 1;
+    setUpdateList(newUpdate);
+    hideModal()
   };
   const [formData, setFormData] = useState({
     id_of_topic: topicObject._id,
@@ -34,6 +36,10 @@ const MaterialForm = () => {
     description: "",
     file: null,
   });
+
+  const hideModal = () => {
+    setVisible(false)
+  }
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
       <input

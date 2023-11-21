@@ -3,7 +3,7 @@ import styles from "./TopicOfModeratorCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import otherIMG from "../../images/icons8-book-64.png";
+import otherIMG from "../../images/icons8-book-94.png";
 import Loader from "../UI/Loader/Loader";
 const TopicOfModeratorCard = ({ topic }) => {
   const [isFetched, setIsFetched] = useState(true);
