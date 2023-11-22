@@ -6,9 +6,14 @@ import SignUpForm from "../../SignUpForm/SignUpForm";
 import { useState } from "react";
 import MyFooter from "../../UI/MyFooter/MyFooter";
 import someBook from "../../../images/SomeBook.png";
+import { useContext } from "react";
+import { UserRoleContext } from "../../../context/myContext";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [isAccountExist, setIsAccountExist] = useState(true);
+  const { userRole } = useContext(UserRoleContext);
   return (
     <div className={styles.header}>
       <MyModal visible={visible} setVisible={setVisible}>
@@ -23,6 +28,22 @@ const Header = () => {
           Military <span>English</span>
         </h2>
         <ul>
+          <li>
+            <h3
+              onClick={() => {
+                if (!userRole) {
+                  setVisible(true);
+                } else if (userRole === "user") {
+                  navigate("/userPage");
+                } else if (userRole === "courseModerator") {
+                  navigate("/courseModeratorPage");
+                } else if (userRole === "siteManager") {
+                }
+              }}
+            >
+              Home
+            </h3>
+          </li>
           <li>
             <a href="#about">About</a>
           </li>

@@ -4,7 +4,13 @@ import CourseModeratorPage from "../components/pages/CourseModeratorPage/CourseM
 import CoursesrPage from "../components/pages/CoursesPage/CoursesPage";
 import SelectedCourseOfModerator from "../components/pages/SelectedCourseOfModerator/SelectedCourseOfModerator";
 import SelectedTopicOfModerator from "../components/pages/SelectedTopicOfModerator/SelectedTopicOfModerator";
-export const userRoutes = [{ path: "/userPage", element: UserPage }];
+import SelectedUserCourse from "../components/pages/SelectedUserCourse/SelectedUserCourse";
+import SelectedUserTopic from "../components/pages/SelectedUserTopic/SelectedUserTopic";
+export const userRoutes = [
+  { path: "/userPage", element: UserPage },
+  { path: "/selectedUserCourse", element: SelectedUserCourse },
+  { path: "/selectedUserTopic", element: SelectedUserTopic },
+];
 export const courseModeratorRoutes = [
   { path: "/courseModeratorPage", element: CourseModeratorPage },
   { path: "/selectedCourseOfModerator", element: SelectedCourseOfModerator },

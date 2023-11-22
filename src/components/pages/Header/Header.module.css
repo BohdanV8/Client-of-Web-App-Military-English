@@ -66,7 +66,7 @@ span {
   padding: 10px 20px;
 }
 
-.myNav ul li a {
+.myNav ul li a,h3{
   color: azure;
   text-decoration: none;
   font-weight: bold;
@@ -74,6 +74,12 @@ span {
 }
 
 .myNav ul li a:hover {
+  color: red;
+  transition: 0.3s;
+}
+
+.myNav ul li h3:hover {
+  cursor: pointer;
   color: red;
   transition: 0.3s;
 }

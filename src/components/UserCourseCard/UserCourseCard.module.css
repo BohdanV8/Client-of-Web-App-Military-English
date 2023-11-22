@@ -1,0 +1,42 @@
+.courseCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .courseCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .courseCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .courseImage {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Задайте максимальну висоту */
+    object-fit: cover; /* Заповнює контейнер, зберігаючи співвідношення сторін фотографії */
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .courseCard p {
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .courseCard p.category {
+    color: #007bff; /* Blue color for category */
+  }
+  
+  .courseCard p.date {
+    color: #999;
+  }

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+
+
+.logoText{
+    font-size: xx-large;
+    font-family: 'Raleway', sans-serif;
+}
+
+.my_button {
+    border: none;
+    background: var(
+      --gradient-purple-gradient-12,
+      linear-gradient(90deg, #ff2222 0%, rgb(255, 141, 88) 100%)
+    );
+    padding: 10px 40px;
+    border-radius: 30px;
+    color: white;
+    transition: 0.4s;
+    position: relative;
+    right: 0%;
+  }
+
+.my_button h5 {
+    font-family: 'Raleway', sans-serif;
+}
+  
+.my_button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.greeting{
+  font-family: 'Lora', serif;
+}
+
+.description{
+  font-family: 'Varela', sans-serif;
+  font-size:x-large;
+  text-align: justify;
+}

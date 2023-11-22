@@ -6,7 +6,9 @@ import CourseForm from "../../CourseForm/CourseForm";
 import useCategories from "../../../hooks/useCategories";
 import CoursesOfModeratorList from "../../CoursesOfModeratorList/CoursesOfModeratorList";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const CourseModeratorPage = () => {
+  const navigate = useNavigate();
   const categories = useCategories();
   const [visible, setVisible] = useState(false);
   const [courses, setCourses] = useState([]);
@@ -135,6 +137,26 @@ const CourseModeratorPage = () => {
       </div>
       <div className="container mt-5">
         <CoursesOfModeratorList courses={courses} />
+      </div>
+      <div className="container text-center">
+        <button
+          type="button"
+          class="btn btn-link mt-5"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <h5 className={styles.go}>Перейти на головну сторінку</h5>
+        </button>
+        <button
+          type="button"
+          class="btn btn-link mt-5"
+          onClick={() => {
+            navigate("/courses");
+          }}
+        >
+          <h5 className={styles.go}>Переглянути інші курси</h5>
+        </button>
       </div>
     </div>
   );

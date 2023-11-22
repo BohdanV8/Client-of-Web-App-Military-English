@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
+import styles from "./CourseCard.module.css";
 import axios from "axios";
-import styles from "./CourseOfModeratorCard.module.css";
-import useCategoryById from "../../hooks/useCategoryById";
-import { useNavigate } from "react-router-dom";
+import Loader from "../UI/Loader/Loader";
+import { useState } from "react";
+import { useEffect } from "react";
 import otherIMG from "../../images/icons8-курс-94.png";
-import Loader from "../../components/UI/Loader/Loader";
-const CourseOfModeratorCard = ({ course }) => {
+import useCategoryById from "../../hooks/useCategoryById";
+import useModeratorById from "../../hooks/useModeratorById";
+const CourseCard = ({course}) => {
   const { title, url_of_photo, id_of_category, description, date } = course;
+  const moderator = useModeratorById(course.id_of_courseModerator)
   const [imageUrl, setImageUrl] = useState();
   const category = useCategoryById(id_of_category);
-  const navigate = useNavigate();
   const [isFetched, setIsFetched] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +33,7 @@ const CourseOfModeratorCard = ({ course }) => {
         console.error("Error fetching photo:", error);
         setIsFetched(false);
       }
+      console.log("moderator ",course.id_of_courseModerator)
     };
     fetchData();
   }, []);
@@ -42,7 +44,6 @@ const CourseOfModeratorCard = ({ course }) => {
         const someCourse = course;
         const jsonString = JSON.stringify(someCourse);
         localStorage.setItem("selectedCourse", jsonString);
-        navigate("/selectedCourseOfModerator");
       }}
     >
       {isFetched ? (
@@ -57,6 +58,7 @@ const CourseOfModeratorCard = ({ course }) => {
           )}
           <p>Category: {category}</p>
           <p>{description}</p>
+          <p>Moderator: {moderator && moderator.username}</p>
           <p>Date: {new Date(date).toLocaleDateString()}</p>
         </div>
       )}
@@ -64,4 +66,4 @@ const CourseOfModeratorCard = ({ course }) => {
   );
 };
 
-export default CourseOfModeratorCard;
+export default CourseCard;

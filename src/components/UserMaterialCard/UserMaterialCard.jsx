@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../UI/Loader/Loader";
-import styles from "./MaterialOfModeratorCard.module.css";
-const MaterialOfModeratorCard = ({ material }) => {
+import styles from "./UserMaterialCard.module.css";
+const UserMaterialCard = ({ material }) => {
   const [fileURL, setFileURL] = useState("");
   const [isFetched, setIsFetched] = useState(true);
   const [typeOfFile, setTypeOfFile] = useState();
@@ -79,4 +79,4 @@ const MaterialOfModeratorCard = ({ material }) => {
   );
 };
 
-export default MaterialOfModeratorCard;
+export default UserMaterialCard;
