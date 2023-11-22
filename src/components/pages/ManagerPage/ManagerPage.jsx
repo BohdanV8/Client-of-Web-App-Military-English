@@ -15,6 +15,7 @@ const ManagerPage = () => {
   const [users, setUsers] = useState([]);
   const [categoryVisible, setCategoryVisible] = useState(false);
   const [roleVisible, setRoleVisible] = useState(false);
+  const [update, setUpdate] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUsers = async () => {
@@ -22,14 +23,14 @@ const ManagerPage = () => {
       setUsers(response.data);
     };
     fetchUsers();
-  }, []);
+  }, [update]);
   return (
     <div className="container">
       <MyModal visible={categoryVisible} setVisible={setCategoryVisible}>
         <CategoryForm updateCategories={updateCategories} />
       </MyModal>
       <MyModal visible={roleVisible} setVisible={setRoleVisible}>
-        <ChangeUserRoleForm />
+        <ChangeUserRoleForm update = {update} setUpdate = {setUpdate}/>
       </MyModal>
       <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ChangeUserRoleForm.module.css";
 import { useState } from "react";
 import axios from "axios";
-const ChangeUserRoleForm = () => {
+const ChangeUserRoleForm = ({update, setUpdate}) => {
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -17,6 +17,8 @@ const ChangeUserRoleForm = () => {
         username: formData.username,
         role: formData.role,
       });
+      var newRender = update;
+      setUpdate(newRender + 1)
     } catch (error) {
         
     }
