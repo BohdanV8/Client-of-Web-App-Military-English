@@ -1,0 +1,27 @@
+.containerForCategories {
+  margin: 20px;
+}
+
+.containerForCategories h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.containerForCategories ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.containerForCategories li {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.buttonContainer {
+    font-size: 24px; 
+    cursor: pointer;
+  }

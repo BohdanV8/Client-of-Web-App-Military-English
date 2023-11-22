@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const CourseForm = () => {
   const navigate = useNavigate();
-  const categories = useCategories();
+  const {categories} = useCategories();
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

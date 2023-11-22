@@ -11,7 +11,7 @@ import AllCoursesList from "../../AllCoursesList/AllCoursesList";
 import UnsubscribedCoursesList from "../../UnsubscribedCoursesList/UnsubscribedCoursesList";
 const CoursesrPage = () => {
   const navigate = useNavigate();
-  const categories = useCategories();
+  const {categories} = useCategories();
   const [searchString, setSerarchString] = useState("");
   const [SelectedCategory, setSelectedCategory] = useState("");
   const [courses, setCourses] = useState([]);
@@ -130,7 +130,8 @@ const CoursesrPage = () => {
                   navigate("/userPage");
                 } else if (userRole === "courseModerator") {
                   navigate("/courseModeratorPage");
-                } else if (userRole === "courseModerator") {
+                } else if (userRole === "siteManager") {
+                  navigate("/ManagerPage");
                 } else {
                   navigate("/");
                 }

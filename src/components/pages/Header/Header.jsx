@@ -38,6 +38,7 @@ const Header = () => {
                 } else if (userRole === "courseModerator") {
                   navigate("/courseModeratorPage");
                 } else if (userRole === "siteManager") {
+                  navigate("/ManagerPage");
                 }
               }}
             >

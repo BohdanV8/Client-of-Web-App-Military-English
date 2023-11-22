@@ -6,6 +6,7 @@ import SelectedCourseOfModerator from "../components/pages/SelectedCourseOfModer
 import SelectedTopicOfModerator from "../components/pages/SelectedTopicOfModerator/SelectedTopicOfModerator";
 import SelectedUserCourse from "../components/pages/SelectedUserCourse/SelectedUserCourse";
 import SelectedUserTopic from "../components/pages/SelectedUserTopic/SelectedUserTopic";
+import ManagerPage from "../components/pages/ManagerPage/ManagerPage";
 export const userRoutes = [
   { path: "/userPage", element: UserPage },
   { path: "/selectedUserCourse", element: SelectedUserCourse },
@@ -20,3 +21,7 @@ export const publicRoutes = [
   { path: "/", element: Header },
   { path: "/courses", element: CoursesrPage },
 ];
+
+export const managerRoutes = [
+  {path: "/ManagerPage", element: ManagerPage}
+]

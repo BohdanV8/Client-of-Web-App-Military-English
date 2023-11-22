@@ -13,14 +13,11 @@ const SignInForm = ({ setIsAccountExist }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Відправка POST-запиту на сервер
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         formData
       );
 
-      // Обробка успішної відповіді від сервера, наприклад, перехід на іншу сторінку або встановлення додаткових флагів
-      console.log(response.data); // Виводимо дані з відповіді у консоль (це може бути зайвим на продакшені)
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${response.data.token}`;
@@ -29,14 +26,15 @@ const SignInForm = ({ setIsAccountExist }) => {
       localStorage.setItem("userName", response.data.name);
       localStorage.setItem("userRole", response.data.userRole);
       setUserRole(response.data.userRole);
+      console.log(response.data.userRole);
       if (response.data.userRole === "user") {
         navigate("/userPage");
       } else if (response.data.userRole === "courseModerator") {
         navigate("/courseModeratorPage");
       } else if (response.data.userRole === "siteManager") {
+        navigate("/ManagerPage");
       }
     } catch (error) {
-      // Обробка помилок, наприклад, виведення повідомлення про помилку користувачеві
       console.error("Error during signup:", error.message);
     }
   };

@@ -9,7 +9,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const CourseModeratorPage = () => {
   const navigate = useNavigate();
-  const categories = useCategories();
+  const {categories} = useCategories();
   const [visible, setVisible] = useState(false);
   const [courses, setCourses] = useState([]);
   const [searchString, setSerarchString] = useState("");

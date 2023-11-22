@@ -19,7 +19,18 @@ const useCategories = () => {
     fetchCategories();
   }, []);
 
-  return categories;
+  const updateCategories = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/categories/all"
+      );
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error updating categories:', error);
+    }
+  };
+
+  return {categories, updateCategories};
 };
 
 export default useCategories;

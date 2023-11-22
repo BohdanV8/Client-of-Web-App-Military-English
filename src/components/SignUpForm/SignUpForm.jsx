@@ -18,8 +18,6 @@ const SignUpForm = ({ setIsAccountExist }) => {
         formData
       );
 
-      // Обробка успішної відповіді від сервера, наприклад, перехід на іншу сторінку або встановлення додаткових флагів
-      console.log(response.data); // Виводимо дані з відповіді у консоль (це може бути зайвим на продакшені)
       localStorage.setItem("userId", response.data.userId);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userName", formData.name);
@@ -33,9 +31,9 @@ const SignUpForm = ({ setIsAccountExist }) => {
       } else if (response.data.userRole === "courseModerator") {
         navigate("/courseModeratorPage");
       } else if (response.data.userRole === "siteManager") {
+        navigate("/ManagerPage");
       }
     } catch (error) {
-      // Обробка помилок, наприклад, виведення повідомлення про помилку користувачеві
       console.error("Error during signup:", error.message);
     }
   };

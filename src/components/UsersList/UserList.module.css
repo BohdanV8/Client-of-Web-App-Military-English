@@ -1,0 +1,29 @@
+.containerForUsers {
+    margin: 20px;
+  }
+  
+  .containerForUsers h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .containerForUsers h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+
+  .containerForUsers ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .containerForUsers li {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  

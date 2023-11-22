@@ -5,7 +5,7 @@ import { courseModeratorRoutes } from "../router/routes";
 import { Route, Routes } from "react-router-dom";
 import { UserRoleContext } from "../context/myContext";
 import { useContext } from "react";
-
+import { managerRoutes } from "../router/routes";
 const AppRouter = () => {
   const { userRole } = useContext(UserRoleContext);
 
@@ -19,16 +19,9 @@ const AppRouter = () => {
       routesToRender = [...courseModeratorRoutes, ...publicRoutes];
       break;
     case "siteManager":
-      return (
-        <h1>
-          siteManager Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Nesciunt sapiente iusto, quis necessitatibus delectus, aspernatur quasi
-          eveniet voluptatem tempore nihil autem velit esse! Accusamus aliquid
-          ratione voluptate voluptatibus odio velit.
-        </h1>
-      );
+      routesToRender = [...managerRoutes, ...publicRoutes];
+      break;
     default:
-      // Якщо роль не визначена, ви можете задати за замовчуванням
       routesToRender = publicRoutes;
   }
 
