@@ -48,11 +48,12 @@ const Header = () => {
           <li>
             <a href="#about">About</a>
           </li>
-          <li>
-            <a href="#courses">Courses</a>
-          </li>
-          <li>
-            <a href="#contacts">Contacts</a>
+          <li
+            onClick={() => {
+              navigate("/courses");
+            }}
+          >
+            <h3>Courses</h3>
           </li>
         </ul>
         <button
@@ -93,68 +94,6 @@ const Header = () => {
             </div>
             <div className="col-md-7">
               <img src={someBook} alt="someBook" className={styles.myImg} />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="courses" className={styles.contentBoxToTop}></section>
-      <section id="contacts" className={styles.contentBoxToBottom}>
-        <div className="row mt-5 container-fluid">
-          <div className="col-md-6"></div>
-          <div className="col-md-6">
-            <div className={styles.contactContent}>
-              <h2>Контакти</h2>
-              <p>
-                Ми завжди готові відповісти на ваші запитання та надати
-                додаткову інформацію
-              </p>
-
-              <div>
-                <h3>Зв'яжіться з нами:</h3>
-                <p>Email: thorykbv@gmail.com</p>
-                <p>Телефон: 0689416887</p>
-              </div>
-
-              <div className={styles.contactForm}>
-                <h3>Напишіть нам:</h3>
-                <form>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="name">Ваше ім'я:</label>
-                    <input
-                      className={styles.myInputAndTextArea}
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="email">Ваш Email:</label>
-                    <input
-                      className={styles.myInputAndTextArea}
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="message">Повідомлення:</label>
-                    <textarea
-                      className={styles.myInputAndTextArea}
-                      id="message"
-                      name="message"
-                      rows="4"
-                      required
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <button type="submit" className={styles.my_button}>
-                      Відправити
-                    </button>
-                  </div>
-                </form>
-              </div>
             </div>
           </div>
         </div>
