@@ -35,15 +35,18 @@ const SignInForm = ({ setIsAccountExist }) => {
         navigate("/ManagerPage");
       }
     } catch (error) {
-      console.error("Error during signup:", error.message);
+      setError("Помилка входу в акаунт");
+      console.error("Error during signin:", error.message);
     }
   };
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const [error, setError] = useState("");
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
+      <h1 className={styles.signInError}>{error}</h1>
       <input
         className={styles.myInput}
         type="text"

@@ -9,11 +9,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const CourseModeratorPage = () => {
   const navigate = useNavigate();
-  const {categories} = useCategories();
+  const { categories } = useCategories();
   const [visible, setVisible] = useState(false);
   const [courses, setCourses] = useState([]);
   const [searchString, setSerarchString] = useState("");
   const [SelectedCategory, setSelectedCategory] = useState("");
+  const [update, setUpdate] = useState(0);
   useEffect(() => {
     let isMounted = true;
 
@@ -38,7 +39,7 @@ const CourseModeratorPage = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [update]);
 
   const search = async () => {
     try {
@@ -136,12 +137,16 @@ const CourseModeratorPage = () => {
         </div>
       </div>
       <div className="container mt-5">
-        <CoursesOfModeratorList courses={courses} />
+        <CoursesOfModeratorList
+          courses={courses}
+          setUpdate={setUpdate}
+          update={update}
+        />
       </div>
-      <div className="container text-center">
+      <div className="container text-center mt-2 mb-5">
         <button
           type="button"
-          class="btn btn-link mt-5"
+          className="btn btn-link"
           onClick={() => {
             navigate("/");
           }}
@@ -150,7 +155,7 @@ const CourseModeratorPage = () => {
         </button>
         <button
           type="button"
-          class="btn btn-link mt-5"
+          className="btn btn-link"
           onClick={() => {
             navigate("/courses");
           }}

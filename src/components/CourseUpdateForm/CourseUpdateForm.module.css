@@ -26,11 +26,14 @@
   border-radius: 25px;
   text-align: center;
 }
+.MyTextarea{
+    margin-top: 10px;
+    width: 400px;
+    display: block;
+    border-radius: 25px;
+    text-align:center;
+}
 .myForm {
   padding: 25px;
-  font-family: "Lato", sans-serif;
-}
-.signUpError{
-  color: red;
   font-family: "Lato", sans-serif;
 }

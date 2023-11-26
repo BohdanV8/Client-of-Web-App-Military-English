@@ -30,7 +30,7 @@ const ManagerPage = () => {
         <CategoryForm updateCategories={updateCategories} />
       </MyModal>
       <MyModal visible={roleVisible} setVisible={setRoleVisible}>
-        <ChangeUserRoleForm update = {update} setUpdate = {setUpdate}/>
+        <ChangeUserRoleForm update={update} setUpdate={setUpdate} />
       </MyModal>
       <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -82,9 +82,7 @@ const ManagerPage = () => {
         />
       </div>
       <div className="container mt-5">
-        <UserList
-          users={users}
-        />
+        <UserList users={users} update={update} setUpdate={setUpdate} />
       </div>
     </div>
   );

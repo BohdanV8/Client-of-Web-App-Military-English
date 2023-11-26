@@ -35,6 +35,7 @@ const SignUpForm = ({ setIsAccountExist }) => {
       }
     } catch (error) {
       console.error("Error during signup:", error.message);
+      setError("Помилка реєстрації");
     }
   };
   const [formData, setFormData] = useState({
@@ -45,8 +46,10 @@ const SignUpForm = ({ setIsAccountExist }) => {
     middlename: "",
   });
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   return (
     <form className={styles.myForm} onSubmit={handleSubmit}>
+      <h1 className={styles.signUpError}>{error}</h1>
       <input
         className={styles.myInput}
         type="text"

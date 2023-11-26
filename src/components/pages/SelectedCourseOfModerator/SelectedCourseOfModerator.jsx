@@ -5,7 +5,9 @@ import styles from "./SelectedCourseOfModerator.module.css";
 import TopicForm from "../../TopicForm/TopicForm";
 import TopicsOfModeratorList from "../../TopicsOfModeratorList/TopicsOfModeratorList";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const SelectedCourseOfModerator = () => {
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [topics, setTopics] = useState([]);
   const courseString = localStorage.getItem("selectedCourse");
@@ -101,6 +103,17 @@ const SelectedCourseOfModerator = () => {
       </div>
       <div className="container mt-5">
         <TopicsOfModeratorList topics={topics} />
+      </div>
+      <div className="container text-center">
+        <button
+          type="button"
+          class="btn btn-link mt-5"
+          onClick={() => {
+            navigate("/courseModeratorPage");
+          }}
+        >
+          <h5 className={styles.go}>Перейти на сторінку своїх курсів</h5>
+        </button>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ const useCategoryById = (id) => {
     };
 
     fetchCategory();
-  }, []);
+  }, [id]);
 
   return categoryById;
 };

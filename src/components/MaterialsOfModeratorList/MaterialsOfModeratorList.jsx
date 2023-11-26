@@ -1,11 +1,16 @@
 import React from "react";
 import MaterialOfModeratorCard from "../MaterialOfModeratorCard/MaterialOfModeratorCard";
-import styles from "./MaterialsOfModeratorList.module.css"
+import styles from "./MaterialsOfModeratorList.module.css";
 const MaterialsOfModeratorList = ({ materials }) => {
   return (
     <ul className={styles.materialList}>
+      {materials.length === 0 && (
+        <h1 className={`container text-center ${styles.notFound}`}>
+          Навчальних матеріалів не знайдено
+        </h1>
+      )}
       {materials.map((material) => (
-        <MaterialOfModeratorCard material = {material}/>
+        <MaterialOfModeratorCard material={material} />
       ))}
     </ul>
   );

@@ -6,7 +6,9 @@ import MaterialForm from "../../MaterialForm/MaterialForm";
 import { useEffect } from "react";
 import axios from "axios";
 import MaterialsOfModeratorList from "../../MaterialsOfModeratorList/MaterialsOfModeratorList";
+import { useNavigate } from "react-router-dom";
 const SelectedTopicOfModerator = () => {
+  const navigate = useNavigate();
   const topicString = localStorage.getItem("selectedTopic");
   const topicObject = JSON.parse(topicString);
   const [materials, setMaterials] = useState([]);
@@ -20,7 +22,7 @@ const SelectedTopicOfModerator = () => {
         );
         setMaterials(response.data);
       } catch (error) {
-        console.error('Error fetching materials:', error);
+        console.error("Error fetching materials:", error);
       }
     };
 
@@ -29,7 +31,11 @@ const SelectedTopicOfModerator = () => {
   return (
     <div>
       <MyModal visible={visible} setVisible={setVisible}>
-        <MaterialForm setVisible = {setVisible} setUpdateList = {setUpdateList} updateList = {updateList}/>
+        <MaterialForm
+          setVisible={setVisible}
+          setUpdateList={setUpdateList}
+          updateList={updateList}
+        />
       </MyModal>
       <div className="container">
         <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -41,7 +47,15 @@ const SelectedTopicOfModerator = () => {
               </h2>
             </div>
           </div>
-
+          <button
+            type="button"
+            className={styles.my_button}
+            onClick={() => {
+              navigate("/selectedCourseOfModerator");
+            }}
+          >
+            <h5>Переглянути інші розділи цього курсу</h5>
+          </button>
           <div className="col-md-3 text-end">
             <button
               type="button"
@@ -59,10 +73,12 @@ const SelectedTopicOfModerator = () => {
         <h1 className={styles.title}>{topicObject.title}</h1>
       </div>
       <div className="container text-center mt-4">
-        {topicObject.description && <h2 className={styles.description}>{topicObject.description}</h2>}
+        {topicObject.description && (
+          <h2 className={styles.description}>{topicObject.description}</h2>
+        )}
       </div>
       <div className="container mt-4 mb-4">
-        <MaterialsOfModeratorList materials = {materials}/>
+        <MaterialsOfModeratorList materials={materials} />
       </div>
     </div>
   );
