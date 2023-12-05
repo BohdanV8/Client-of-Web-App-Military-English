@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../UI/Loader/Loader";
-import styles from "./MaterialOfModeratorCard.module.css";
-const MaterialOfModeratorCard = ({ material }) => {
+import MaterialUpdateForm from "../MaterialUpdateForm/MaterialUpdateForm";
+import MyModal from "../UI/MyModal/MyModal";
+import { useContext } from "react";
+import { UserRoleContext } from "../../context/myContext";
+const MaterialOfModeratorCard = ({ material, setUpdateList, updateList }) => {
   const [fileURL, setFileURL] = useState("");
   const [isFetched, setIsFetched] = useState(true);
   const [typeOfFile, setTypeOfFile] = useState();
+  const [visible, setVisible] = useState(false);
+  const { userRole } = useContext(UserRoleContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +38,12 @@ const MaterialOfModeratorCard = ({ material }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [material.url_of_file]);
+  const deleteMaterial = async (id) => {
+    await axios.delete(`http://localhost:5000/api/materials/delete/${id}`);
+    var new_render = updateList + 1;
+    setUpdateList(new_render);
+  };
   const renderFile = () => {
     switch (typeOfFile) {
       case "jpg":
@@ -41,7 +51,7 @@ const MaterialOfModeratorCard = ({ material }) => {
       case "webp":
       case "png":
       case "avif":
-        return <img src={fileURL} alt={material.title} className="img-fluid"/>;
+        return <img src={fileURL} alt={material.title} className="img-fluid" />;
       case "mp4":
       case "webm":
         return (
@@ -52,7 +62,7 @@ const MaterialOfModeratorCard = ({ material }) => {
       case "mp3":
       case "ogg":
         return (
-          <audio controls width = "400">
+          <audio controls width="400">
             <source src={fileURL} type={`audio/${typeOfFile}`} />
           </audio>
         );
@@ -65,17 +75,56 @@ const MaterialOfModeratorCard = ({ material }) => {
     }
   };
   return (
-    <li key={material._id}>
-      {isFetched ? (
-        <Loader />
-      ) : (
-        <div>
-          <h2>{material.title}</h2>
-          <p>{material.description}</p>
-          <div className={styles.photo_container}>{material.url_of_file !== "" && renderFile()}</div>
-        </div>
-      )}
-    </li>
+    <div>
+      <MyModal visible={visible} setVisible={setVisible}>
+        <MaterialUpdateForm
+          id={material._id}
+          setUpdateList={setUpdateList}
+          updateList={updateList}
+        />
+      </MyModal>
+      <li key={material._id}>
+        {isFetched ? (
+          <Loader />
+        ) : (
+          <div>
+            <h2>{material.title}</h2>
+            <p>{material.description}</p>
+            <div className="row container">
+              <div className={`col-md-9`}>
+                {material.url_of_file !== "" && renderFile()}
+              </div>
+              {userRole === "courseModerator" && (
+                <div className="col-md-3">
+                  <div className="row">
+                    <button
+                      type="button"
+                      className={`btn btn-outline-primary`}
+                      onClick={() => {
+                        setVisible(true);
+                      }}
+                    >
+                      Update
+                    </button>
+                  </div>
+                  <div className="row mt-3">
+                    <button
+                      type="button"
+                      className={`btn btn-outline-primary`}
+                      onClick={() => {
+                        deleteMaterial(material._id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </li>
+    </div>
   );
 };
 

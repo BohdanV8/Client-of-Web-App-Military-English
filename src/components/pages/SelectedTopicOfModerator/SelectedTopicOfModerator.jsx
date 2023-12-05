@@ -78,7 +78,11 @@ const SelectedTopicOfModerator = () => {
         )}
       </div>
       <div className="container mt-4 mb-4">
-        <MaterialsOfModeratorList materials={materials} />
+        <MaterialsOfModeratorList
+          materials={materials}
+          setUpdateList={setUpdateList}
+          updateList={updateList}
+        />
       </div>
     </div>
   );

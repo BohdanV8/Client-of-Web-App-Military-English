@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialOfModeratorCard from "../MaterialOfModeratorCard/MaterialOfModeratorCard";
 import styles from "./MaterialsOfModeratorList.module.css";
-const MaterialsOfModeratorList = ({ materials }) => {
+const MaterialsOfModeratorList = ({ materials, setUpdateList, updateList }) => {
   return (
     <ul className={styles.materialList}>
       {materials.length === 0 && (
@@ -10,7 +10,12 @@ const MaterialsOfModeratorList = ({ materials }) => {
         </h1>
       )}
       {materials.map((material) => (
-        <MaterialOfModeratorCard material={material} />
+        <MaterialOfModeratorCard
+          key={material._id}
+          material={material}
+          setUpdateList={setUpdateList}
+          updateList={updateList}
+        />
       ))}
     </ul>
   );
